@@ -2,6 +2,7 @@
 import argparse
 import random
 import re
+import json
 from usgovdata import lastNames, maleFirstNames, femaleFirstNames
 
 genderNames = {
@@ -118,8 +119,7 @@ args = parser.parse_args()
 if not args.male and not args.female:
     args.male = args.female = True
 
-for person in makestudents(args.number, args.male, args.female,
+print(json.dumps(makestudents(args.number, args.male, args.female,
         idgen=ASUBannerIdGenerator,
         emailformat=ASUEmailFormatter,
-        usernameformat=ASUUsernameFormatter):
-    print "%(id)d,%(gender)s,%(username)s,%(email)s,%(first)s,%(middle)s,%(last)s" % person
+        usernameformat=ASUUsernameFormatter)))
